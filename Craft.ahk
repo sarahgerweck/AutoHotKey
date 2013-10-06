@@ -26,6 +26,7 @@ Queued := 0
   +NumpadEnter:: Queued++
 
   NumpadEnter::
+    KeepRunning := true
     Queued++
     while Queued > 0
     {
@@ -46,10 +47,10 @@ Queued := 0
         else
           Sleep %ShortSleep%
       }
-      Queued--
       if Queued > 0
       {
-        Sleep 5500
+        Queued--
+        Sleep 4500
       }
     }
 	Return
