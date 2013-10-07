@@ -22,10 +22,27 @@ Rand( a=0.0, b=1 ) {
   Return r
 }
 
+SynthX := 817
+SynthY := 610
+
+HQ1X := 725
+HQ1Y := 297
+
+SendClick() {
+  Send {LButton down}
+  Sleep 50 + Rand(-20, 20)
+  Send {LButton up}
+}
+
+ClickSynth() {
+  global SynthX, SynthY
+  MouseMove, %SynthX%, %SynthY%
+  SendClick()
+}
 
 #IfWinActive, FINAL FANTASY
 {
-  ^NumpadEnter:: 
+  ^NumpadEnter::
     KeepRunning := false
     Queued := 0
     return
@@ -37,16 +54,14 @@ Rand( a=0.0, b=1 ) {
     Queued++
     while Queued > 0
     {
-      Send {LButton down}
-      Sleep 50 + Rand(-10, 10)
-      Send {LButton up}
+      ClickSynth()
       Sleep 3000 + Rand(-10, 50)
       Loop parse, keys, `,
       {
         if not KeepRunning
         {
           KeepRunning := true
-          break 
+          break
         }
         Send %A_LoopField%
         if A_LoopField = 8
@@ -60,6 +75,6 @@ Rand( a=0.0, b=1 ) {
         Sleep 4500 + Rand(-100, 100)
       }
     }
-	Return
+    Return
 }
 
