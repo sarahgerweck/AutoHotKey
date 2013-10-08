@@ -40,6 +40,41 @@ ClickSynth() {
   SendClick()
 }
 
+DoLoop(Keys, Hq1Count) {
+  global Queued, Cooldown, ShortSleep, KeepRunning, HQ1X, HQ1Y
+
+  while Queued > 0
+  {
+    Loop %Hq1Count% {
+      MouseMove, %HQ1X%, %HQ1Y%
+      SendClick()
+      Sleep 275 + Rand(-20, 20)
+    }
+    ClickSynth()
+    Sleep 3000 + Rand(-10, 50)
+    Loop parse, Keys, `,
+    {
+      if not KeepRunning
+      {
+        KeepRunning := true
+        break
+      }
+      Send %A_LoopField%
+      if A_LoopField = 8
+        Sleep Cooldown + Rand(0,30)
+      else
+        Sleep ShortSleep + Rand(-10,15)
+    }
+    if Queued > 0
+    {
+      Queued--
+      Sleep 4500 + Rand(-100, 100)
+    }
+  }
+}
+
+Hq1Count := 0
+
 #IfWinActive, FINAL FANTASY
 {
   ^NumpadEnter::
@@ -49,32 +84,15 @@ ClickSynth() {
 
   +NumpadEnter:: Queued++
 
+  NumpadDot::
+    Hq1Count := 2
+    return
+
   NumpadEnter::
     KeepRunning := true
     Queued++
-    while Queued > 0
-    {
-      ClickSynth()
-      Sleep 3000 + Rand(-10, 50)
-      Loop parse, keys, `,
-      {
-        if not KeepRunning
-        {
-          KeepRunning := true
-          break
-        }
-        Send %A_LoopField%
-        if A_LoopField = 8
-          Sleep Cooldown + Rand(0,30)
-        else
-          Sleep ShortSleep + Rand(-10,15)
-      }
-      if Queued > 0
-      {
-        Queued--
-        Sleep 4500 + Rand(-100, 100)
-      }
-    }
-    Return
+    DoLoop(keys, Hq1Count)
+    Hq1Count := 0
+    return
 }
 
