@@ -84,7 +84,7 @@ Hq1Count := 0
 
   +NumpadEnter:: Queued++
 
-  NumpadDot::
+  NumpadAdd::
     Hq1Count := 2
     return
 
