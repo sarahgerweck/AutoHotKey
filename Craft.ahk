@@ -52,22 +52,28 @@ DoLoop(Keys, Hq1Count) {
       SendClick()
       Sleep 275 + Rand(-20, 20)
     }
+
+    if not KeepRunning
+      return
+
     ClickSynth()
     Sleep 3000 + Rand(-10, 50)
 
     Loop parse, Keys, `,
     {
       if not KeepRunning
-      {
-        KeepRunning := true
-        break
-      }
+        return
+
       Send %A_LoopField%
       if A_LoopField = 8
         Sleep Cooldown + Rand(0,30)
       else
         Sleep ShortSleep + Rand(-10,15)
     }
+
+    if not KeepRunning
+      return
+
     if Queued > 0
     {
       Queued--
