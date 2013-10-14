@@ -42,8 +42,18 @@ ClickSynth() {
   return
 }
 
+GetCooldown(key) {
+  global Cooldown, ShortSleep
+  if (key = 8) {
+    return Cooldown + Rand(0,30)
+  } else {
+    return ShortSleep + Rand(-10,15)
+  }
+}
+
+
 DoLoop(Keys, Hq1Count) {
-  global Queued, Cooldown, ShortSleep, KeepRunning, HQ1X, HQ1Y
+  global Queued, KeepRunning, HQ1X, HQ1Y
 
   while Queued > 0
   {
@@ -65,10 +75,8 @@ DoLoop(Keys, Hq1Count) {
         return
 
       Send %A_LoopField%
-      if A_LoopField = 8
-        Sleep Cooldown + Rand(0,30)
-      else
-        Sleep ShortSleep + Rand(-10,15)
+
+      Sleep GetCooldown(%A_LoopField%)
     }
 
     if not KeepRunning
