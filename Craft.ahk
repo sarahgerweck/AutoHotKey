@@ -32,12 +32,14 @@ SendClick() {
   Send {LButton down}
   Sleep 50 + Rand(-20, 20)
   Send {LButton up}
+  return
 }
 
 ClickSynth() {
   global SynthX, SynthY
   MouseMove, %SynthX%, %SynthY%
   SendClick()
+  return
 }
 
 DoLoop(Keys, Hq1Count) {
@@ -52,6 +54,7 @@ DoLoop(Keys, Hq1Count) {
     }
     ClickSynth()
     Sleep 3000 + Rand(-10, 50)
+
     Loop parse, Keys, `,
     {
       if not KeepRunning
@@ -71,6 +74,7 @@ DoLoop(Keys, Hq1Count) {
       Sleep 4500 + Rand(-100, 100)
     }
   }
+  return
 }
 
 Hq1Count := 0
