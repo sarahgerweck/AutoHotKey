@@ -8,8 +8,8 @@ SetWorkingDir %A_ScriptDir%
 SetTitleMatchMode 1     ; Starts-with matching (FFXIV's window title is long and it has its
                         ; version number inside it.)
 
-Cooldown := 3150
-ShortSleep := 2100
+Cooldown := 3300
+ShortSleep := 2300
 
 keys = 5,9,4,8,9,8,9,8,7
 
