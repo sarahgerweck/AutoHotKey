@@ -76,7 +76,7 @@ DoLoop(Keys, Hq1Count) {
 
       Send %A_LoopField%
 
-      Sleep GetCooldown(%A_LoopField%)
+      Sleep GetCooldown(A_LoopField)
     }
 
     if not KeepRunning
