@@ -13,6 +13,7 @@ SetTitleMatchMode 1     ; Starts-with matching (FFXIV's window title is long and
 ; The list of windows where we don't want the Windows key to do anything.
 GroupAdd, NoWinKey, The Stanley Parable
 GroupAdd, NoWinKey, FINAL FANTASY
+GroupAdd, NoWinKey, Elder Scrolls Online
 
 ; The actual hotkey definition: disable both Windows keys for our window group. (Most keyboards
 ; only have one, on the left, but we might as well handle both cases.)
