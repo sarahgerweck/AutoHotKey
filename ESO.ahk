@@ -22,5 +22,17 @@ SendClick() {
     Sleep 10
     SendClick()
     return
+
+  ; Synaptics interprets simultaneous left and right clicks as a middle click, and there's no way
+  ; to disable this. So, we need to override the behavior.
+  MButton::
+    Send {LButton down}
+    Send {RButton down}
+  return
+
+  MButton Up::
+    Send {LButton up}
+    Send {RButton up}
+  return
 }
 
