@@ -10,8 +10,10 @@ SetTitleMatchMode, 2    ; Contains matching
 
 #IfWinActive, DX9
 {
+  LWin:: Return
+  RWin:: Return
 
-  #PgUp::
+  ^PgUp::
     Loop, 12
     {
       Send {PgUp down}
@@ -20,7 +22,7 @@ SetTitleMatchMode, 2    ; Contains matching
       Sleep 8
     }
     return
-  #PgDn::
+  ^PgDn::
     Loop, 12
     {
       Send {PgDn down}
