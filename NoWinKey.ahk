@@ -16,6 +16,7 @@ GroupAdd, NoWinKey, FINAL FANTASY
 GroupAdd, NoWinKey, Elder Scrolls Online
 GroupAdd, NoWinKey, Diablo III
 GroupAdd, NoWinKey, The Secret World
+GroupAdd, NoWinKey, Deus Ex
 
 ; The actual hotkey definition: disable both Windows keys for our window group. (Most keyboards
 ; only have one, on the left, but we might as well handle both cases.)
