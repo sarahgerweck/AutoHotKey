@@ -15,7 +15,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 WinGet ProcId, PID
 WinGet ProcName, ProcessName
 ; Give up to five seconds to press cancel
-MsgBox 1, , Killing process %ProcName% (id: %ProcId%), 5
+MsgBox 1, , Killing process %ProcName% (id: %ProcId%), 3
 IfMsgBox Cancel
   return
 Process Close, %ProcId%
