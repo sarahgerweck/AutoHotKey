@@ -7,9 +7,9 @@ SetWorkingDir %A_ScriptDir%
 
 SetTitleMatchMode, 3    ; Exact matches
 
-#IfWinActive, Skyrim 
+#IfWinActive, Skyrim
 {
-  ; The way trackpads scroll is not compatible with some games. 
+  ; The way trackpads scroll is not compatible with some games.
   ; Use PgUp & PgDn as alternatives to the scroll wheel.
   PgUp::Send {WheelUp}
   PgDn::Send {WheelDown}
@@ -25,4 +25,4 @@ SetTitleMatchMode, 3    ; Exact matches
     Send {LButton up}
     Send {RButton up}
   return
-} 
+}
