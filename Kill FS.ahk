@@ -1,21 +1,26 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#NoEnv
+#SingleInstance Force
+#Warn All
 
-#SingleInstance force
+SendMode Input
+SetWorkingDir %A_ScriptDir%
 
-; Just a list of active windows we might want to kill.
+ConfirmTimeout := 3
+
+; Here is a list of active windows we might want to kill. Each of these
+; sets a `IfWinActive` directive to match a process and then it binds one or
+; more keys, usually Win+End to the kill command. The bindings don't have a
+; `return`, so they all fall through into the main script at the bottom.
 #IfWinActive ahk_class MediaPlayerClassicW
-#End::
+  #End::
 #IfWinActive, Skyrim
-#End:: 
+  #End::
 
-; Actual script body that does the killing
+; The shared script: find the PID, pop a dialog, then kill that process
+; after `ConfirmTimeout` seconds have elapsed unless *Cancel* was pressed.
 WinGet ProcId, PID
 WinGet ProcName, ProcessName
-; Give up to five seconds to press cancel
-MsgBox 1, , Killing process %ProcName% (id: %ProcId%), 3
+MsgBox 1, , Killing process %ProcName% (id: %ProcId%), %ConfirmTimeout%
 IfMsgBox Cancel
   return
 Process Close, %ProcId%
