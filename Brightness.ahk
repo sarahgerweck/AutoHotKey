@@ -84,6 +84,10 @@ MoveBrightness(IndexMove)
 
 		BrightnessIndex += IndexMove
 
+		; My monitor has an idiosyncrasy that 1 and 0 are identical, so skip 0 to 2 and back
+		if BrightnessIndex = 1
+			BrightnessIndex += IndexMove
+
 		if BrightnessIndex > %MaxIndex%
 		   BrightnessIndex := MaxIndex
 
