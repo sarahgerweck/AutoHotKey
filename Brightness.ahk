@@ -3,10 +3,11 @@
 #InstallKeybdHook
 
 ; Bind the Win+PgUp and Win+PgDn keys
+; They seem backwards to match the builtin brightness functions
 
-#PgUp:: MoveBrightness(1)
+#PgUp:: MoveBrightness(-1)
 
-#PgDn:: MoveBrightness(-1)
+#PgDn:: MoveBrightness(1)
 
 ; The functions below came from the forum post at
 ; https://autohotkey.com/board/topic/83100-laptop-screen-brightness/
