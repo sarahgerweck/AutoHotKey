@@ -5,9 +5,9 @@
 ; Bind the Win+PgUp and Win+PgDn keys
 ; They seem backwards to match the builtin brightness functions
 
-#PgUp:: MoveBrightness(-1)
+#PgUp:: MoveBrightness(-1, True)
 
-#PgDn:: MoveBrightness(1)
+#PgDn:: MoveBrightness(1, True)
 
 ; The functions below came from the forum post at
 ; https://autohotkey.com/board/topic/83100-laptop-screen-brightness/
@@ -16,7 +16,7 @@
 ; Functions
 ;############################################################################
 
-MoveBrightness(IndexMove)
+MoveBrightness(IndexMove, SkipOne = False)
 {
 
   VarSetCapacity(SupportedBrightness, 256, 0)
@@ -84,7 +84,7 @@ MoveBrightness(IndexMove)
     BrightnessIndex += IndexMove
 
     ; My monitor has an idiosyncrasy that 1 and 0 are identical, so skip 0 to 2 and back
-    if BrightnessIndex = 1
+    if (BrightnessIndex = 1 && SkipOne)
       BrightnessIndex += IndexMove
 
     if BrightnessIndex > %MaxIndex%
